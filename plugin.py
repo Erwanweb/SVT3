@@ -250,6 +250,7 @@ class BasePlugin:
         # if mode = off then make sure actual heating is off just in case if was manually set to on
         if Devices[1].sValue == "0":
             self.switchHeat(False)
+	   Devices[7].Update(nValue = 0,sValue = "0")
 
 
     def onStop(self):
@@ -487,6 +488,9 @@ class BasePlugin:
                 DomoticzAPI("type=command&param=switchlight&idx={}&switchcmd={}".format(idx, command))
         if switch:
             Domoticz.Debug("End Heat time = " + str(self.endheat))
+	    Devices[7].Update(nValue = 1,sValue = "100")
+	else:
+	    Devices[7].Update(nValue = 0,sValue = "0")
 
 
     def readTemps(self):
