@@ -200,7 +200,7 @@ class BasePlugin:
         if 6 not in Devices:
             Domoticz.Device(Name="Thermostat temp", Unit=6, TypeName="Temperature").Create()
             devicecreated.append(deviceparam(6, 0, "20"))  # default is 20 degrees
-	if 7 not in Devices:
+        if 7 not in Devices:
             Domoticz.Device(Name="Heating Request", Unit=7, TypeName="Switch", Image=18, Used=1).Create()
             devicecreated.append(deviceparam(7, 0, ""))  # default is Off
 
