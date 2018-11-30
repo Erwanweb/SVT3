@@ -486,10 +486,9 @@ class BasePlugin:
                 DomoticzAPI("type=command&param=switchlight&idx={}&switchcmd={}".format(idx, command))
         if switch:
             Domoticz.Debug("End Heat time = " + str(self.endheat))
-	    Devices[7].Update(nValue = 1,sValue = "100")
+	    Devices[7].Update(nValue=0, sValue="100")
 	else:
-	    Devices[7].Update(nValue = 0,sValue = "0")
-
+	    Devices[7].Update(nValue=0, sValue="0")
 
     def readTemps(self):
 
