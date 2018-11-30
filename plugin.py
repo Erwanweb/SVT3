@@ -250,9 +250,7 @@ class BasePlugin:
         # if mode = off then make sure actual heating is off just in case if was manually set to on
         if Devices[1].sValue == "0":
             self.switchHeat(False)
-	    Devices[7].Update(nValue = 0,sValue = "0")
-
-
+	    
     def onStop(self):
 
         Domoticz.Debugging(0)
