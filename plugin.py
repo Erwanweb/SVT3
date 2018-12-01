@@ -90,8 +90,6 @@ Version:    0.0.1: alpha
                 <option label="Debug - All" value="-1"/>
             </options>
         </param>
-	<param field="Mode7" label="Motion sensors (csv list of idx)" width="100px" required="false" default="0"/>
-	<param field="Mode8" label="TRV (csv list of idx)" width="100px" required="false" default="0"/>
     </params>
 </plugin>
 """
