@@ -200,6 +200,9 @@ class BasePlugin:
         if 6 not in Devices:
             Domoticz.Device(Name="Thermostat temp", Unit=6, TypeName="Temperature").Create()
             devicecreated.append(deviceparam(6, 0, "20"))  # default is 20 degrees
+	if 7 not in Devices:
+            Domoticz.Device(Name="Heating request", Unit=7, TypeName="Switch", Image=9, Used=1).Create()
+            devicecreated.append(deviceparam(7, 0, ""))  # default is Off
 
         # if any device has been created in onStart(), now is time to update its defaults
         for device in devicecreated:
@@ -282,7 +285,7 @@ class BasePlugin:
         now = datetime.now()
         
         # fool proof checking.... based on users feedback
-        if not all(device in Devices for device in (1,2,3,4,5,6)):
+        if not all(device in Devices for device in (1,2,3,4,5,6,7)):
             Domoticz.Error("one or more devices required by the plugin is/are missing, please check domoticz device creation settings and restart !")
             return
 
