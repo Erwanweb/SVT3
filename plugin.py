@@ -350,7 +350,7 @@ class BasePlugin:
                      self.setpoint = float(Devices[5].sValue)
 
                 else:
-                    self.setpoint = 15
+                    self.setpoint = 48
 
                 # call the Domoticz json API for a temperature devices update, to get the lastest temps...
                 if self.readTemps():
