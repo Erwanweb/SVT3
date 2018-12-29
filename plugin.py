@@ -513,7 +513,7 @@ class BasePlugin:
                return
 
             for idx in self.DTpresence:
-                if PresenceDT[idx] == "On":
+                if PresenceDT[idx] == "ON":
                     self.presencechangedtime = datetime.now()
                     Domoticz.Debug("presence detected...")
                     if self.presencechangedtime + timedelta(minutes = 3) <= now:
