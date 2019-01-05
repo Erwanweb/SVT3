@@ -100,10 +100,10 @@ class BasePlugin:
         self.nexttemps = self.endheat
         self.DTpresence = []
         self.Presencemode = False
-        self.Presence = False
-        self.PresenceTH = False
+        self.Presence = True
+        self.PresenceTH = True
         self.presencechangedtime = datetime.now()
-        self.PresenceDetected = False
+        self.PresenceDetected = True
         self.DTtempo = datetime.now()
         self.presenceondelay = 2  # time between first detection and last detection before turning presence ON
         self.presenceoffdelay = 3  # time between last detection before turning presence OFF
