@@ -26,7 +26,7 @@ Version:    0.0.1: alpha
         <param field="Mode2" label="Outside Temperature Sensors (csv list of idx)" width="100px" required="false" default=""/>
         <param field="Mode3" label="TRV (csv list of idx)" width="100px" required="true" default="0"/>
         <param field="Mode4" label="Presence Sensors (csv list of idx)" width="100px" required="false" default=""/>
-        <param field="Mode5" label="Calculation cycle, Minimum Heating time per cycle, Pause On delay, Pause Off delay, Forced mode duration (all in minutes), Presence On delay, Presence Off delay" width="200px" required="true" default="30,0,2,1,60,3,60"/>
+        <param field="Mode5" label="Calculation cycle, Minimum Heating time per cycle, Pause On delay, Pause Off delay, Forced mode duration (all in minutes), Presence On delay, Presence Off delay" width="200px" required="true" default="30,0,2,1,60,5,60"/>
         <param field="Mode6" label="Logging Level" width="200px">
             <options>
                 <option label="Normal" value="Normal"  default="true"/>
@@ -151,7 +151,7 @@ class BasePlugin:
             devicecreated.append(deviceparam(3, 0, ""))  # default is Off
         if 4 not in Devices:
             Domoticz.Device(Name="Setpoint Normal", Unit=4, Type=242, Subtype=1, Used=1).Create()
-            devicecreated.append(deviceparam(4, 0, "60"))  # default is 20 degrees
+            devicecreated.append(deviceparam(4, 0, "20"))  # default is 20 degrees
         if 5 not in Devices:
             Domoticz.Device(Name="Setpoint Economy", Unit=5, Type=242, Subtype=1, Used=1).Create()
             devicecreated.append(deviceparam(5 ,0, "18"))  # default is 18 degrees
