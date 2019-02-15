@@ -11,7 +11,7 @@ sudo apt-get update
 
 sudo apt-get install git
 
-git clone https://github.com/Erwanweb/SVT2.git SVT2
+git clone https://github.com/Erwanweb/SVT3.git SVT3
 
 cd SVT3
 
