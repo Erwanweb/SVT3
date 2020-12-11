@@ -27,7 +27,7 @@ Version:    0.0.1: alpha
         <param field="Mode2" label="TRV Temperature Sensors (csv list of idx)" width="100px" required="false" default=""/>
         <param field="Mode3" label="TRV (csv list of idx)" width="100px" required="true" default="0"/>
         <param field="Mode4" label="Presence Sensors (csv list of idx)" width="100px" required="false" default=""/>
-        <param field="Mode5" label="Pause On delay, Pause Off delay, Forced mode duration (all in minutes) reduc jour, reduc nuit (both in tenth of degre)" width="200px" required="true" default="2,1,60,1,60,10,20"/>
+        <param field="Mode5" label="Pause On delay, Pause Off delay, Forced mode duration, Presence on delay, Presence off delay(all in minutes) reduc jour, reduc nuit (both in tenth of degre)" width="200px" required="true" default="2,1,60,1,60,10,20"/>
         <param field="Mode6" label="Logging Level" width="200px">
             <options>
                 <option label="Normal" value="Normal"  default="true"/>
