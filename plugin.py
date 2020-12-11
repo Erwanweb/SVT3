@@ -545,7 +545,7 @@ class BasePlugin:
                 self.ActiveSensors[idx] = False
         else:
             if not self.ActiveSensors[idx]:
-                Domoticz.Status("previously timed out temperature sensor '{}' is back online".format(name))
+                Domoticz.Log("previously timed out temperature sensor '{}' is back online".format(name))
                 self.ActiveSensors[idx] = True
 
         return timedout
