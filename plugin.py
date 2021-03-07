@@ -194,6 +194,9 @@ class BasePlugin:
         # if mode = off then make sure actual heating is off just in case if was manually set to on
         if Devices[1].sValue == "0":
             self.switchHeat = False
+        
+        # update temp
+        self.readTemps()
 
 
     def onStop(self):
