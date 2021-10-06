@@ -263,7 +263,7 @@ class BasePlugin:
                     Domoticz.Debug("Forced mode Off after timer !")
                     Devices[1].Update(nValue=1, sValue="10")  # set thermostat to normal mode
                     self.switchHeat = False
-                    self.TRVsetpoint = self.setpoint + (self.intemp - self.TRVtemp)  # correction of TRV setpoint using difference between real indoor temp and mesured trv temp.
+                    self.TRVsetpoint = self.setpoint - (self.intemp - self.TRVtemp)  # correction of TRV setpoint using difference between real indoor temp and mesured trv temp.
                     Domoticz.Debug("TRV Calculded setpoint is : " + str(self.TRVsetpoint))
                     if not Devices[7].nValue == 0:
                         Devices[7].Update(nValue = 0,sValue = Devices[7].sValue)
@@ -284,7 +284,7 @@ class BasePlugin:
                 Domoticz.Debug("Forced mode Off !")
                 self.forced = False
                 self.switchHeat = True
-                self.TRVsetpoint = self.setpoint + (self.intemp - self.TRVtemp)  # correction of TRV setpoint using difference between real indoor temp and mesured trv temp.
+                self.TRVsetpoint = self.setpoint - (self.intemp - self.TRVtemp)  # correction of TRV setpoint using difference between real indoor temp and mesured trv temp.
                 Domoticz.Debug("TRV Calculded setpoint is : " + str(self.TRVsetpoint))
                 if not Devices[7].nValue == 0:
                     Devices[7].Update(nValue = 0,sValue = Devices[7].sValue)
@@ -294,7 +294,7 @@ class BasePlugin:
                     Domoticz.Debug("Pause is now Off")
                     self.pause = False
                     self.switchHeat = True
-                    self.TRVsetpoint = self.setpoint + (self.intemp - self.TRVtemp)  # correction of TRV setpoint using difference between real indoor temp and mesured trv temp.
+                    self.TRVsetpoint = self.setpoint - (self.intemp - self.TRVtemp)  # correction of TRV setpoint using difference between real indoor temp and mesured trv temp.
                     Domoticz.Debug("TRV Calculded setpoint is : " + str(self.TRVsetpoint))
 
             elif not self.pause and self.pauserequested:  # we are not in pause and the pause switch is now on
@@ -317,25 +317,25 @@ class BasePlugin:
                     if self.PresenceTH:
                         self.setpoint = float(Devices[4].sValue)
                         Domoticz.Log("AUTO Mode - used setpoint is NORMAL : " + str(self.setpoint))
-                        self.TRVsetpoint = self.setpoint + (self.intemp - self.TRVtemp)  # correction of TRV setpoint using difference between real indoor temp and mesured trv temp.
+                        self.TRVsetpoint = self.setpoint - (self.intemp - self.TRVtemp)  # correction of TRV setpoint using difference between real indoor temp and mesured trv temp.
                         Domoticz.Debug("TRV Calculded setpoint is : " + str(self.TRVsetpoint))
 
                     else:
                         self.setpoint = (float(Devices[4].sValue) - ((self.reducjour) / 10))
                         Domoticz.Log("AUTO Mode - used setpoint is reducted one : " + str(self.setpoint))
-                        self.TRVsetpoint = self.setpoint + (self.intemp - self.TRVtemp)  # correction of TRV setpoint using difference between real indoor temp and mesured trv temp.
+                        self.TRVsetpoint = self.setpoint - (self.intemp - self.TRVtemp)  # correction of TRV setpoint using difference between real indoor temp and mesured trv temp.
                         Domoticz.Debug("TRV Calculded setpoint is : " + str(self.TRVsetpoint))
 
                 elif Devices[2].sValue == "20":  # Mode ECO
                     self.setpoint = float(Devices[5].sValue)
                     Domoticz.Log("ECO Mode - used setpoint is ECO one : " + str(self.setpoint))
-                    self.TRVsetpoint = self.setpoint + (self.intemp - self.TRVtemp)  # correction of TRV setpoint using difference between real indoor temp and mesured trv temp.
+                    self.TRVsetpoint = self.setpoint - (self.intemp - self.TRVtemp)  # correction of TRV setpoint using difference between real indoor temp and mesured trv temp.
                     Domoticz.Debug("TRV Calculded setpoint is : " + str(self.TRVsetpoint))
 
                 else:
                     self.setpoint = 15  # Mode Vacances
                     Domoticz.Log("VACATION Mode - used setpoint is VACATION one : " + str(self.setpoint))
-                    self.TRVsetpoint = self.setpoint + (self.intemp - self.TRVtemp)  # correction of TRV setpoint using difference between real indoor temp and mesured trv temp.
+                    self.TRVsetpoint = self.setpoint - (self.intemp - self.TRVtemp)  # correction of TRV setpoint using difference between real indoor temp and mesured trv temp.
                     Domoticz.Debug("TRV Calculded setpoint is : " + str(self.TRVsetpoint))
 
 
