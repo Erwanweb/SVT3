@@ -87,7 +87,8 @@ class BasePlugin:
         self.setpoint = 20.0
         self.TRVsetpoint = 20.0
         self.endheat = datetime.now()
-        self.nexttemps = self.endheat
+        self.nexttemps = datetime.now()
+        self.temptimeout = datetime.now()
         self.DTpresence = []
         self.Presencemode = False
         self.Presence = False
@@ -459,7 +460,8 @@ class BasePlugin:
     def readTemps(self):
 
         # set update flag for next temp update
-        self.nexttemps = datetime.now() + timedelta(minutes=2)
+        self.nexttemps = datetime.now() + timedelta(minutes=5)
+        now = datetime.now()
 
         # fetch all the devices from the API and scan for sensors
         noerror = True
@@ -491,6 +493,7 @@ class BasePlugin:
         if nbtemps > 0:
             self.intemp = round(sum(listintemps) / nbtemps, 1)
             Devices[6].Update(nValue = 0,sValue = str(self.intemp),TimedOut = False)
+            self.temptimeout = datetime.now() + timedelta(minutes=30)
             if self.intemperror:  # there was previously an invalid inside temperature reading... reset to normal
                 self.intemperror = False
                 self.WriteLog("Inside Temperature reading is now valid again: Resuming normal operation","Status")
@@ -498,14 +501,15 @@ class BasePlugin:
                 Devices[1].Update(nValue = Devices[1].nValue,sValue = Devices[1].sValue,TimedOut = False)
         else:
             # no valid inside temperature
-            noerror = False
-            if not self.intemperror:
-                self.intemperror = True
-                Domoticz.Error("No Inside Temperature found: Switching request heating Off")
-                self.switchHeat = False
-                # we mark both the thermostat switch and the thermostat temp devices as timedout
-                Devices[1].Update(nValue = Devices[1].nValue,sValue = Devices[1].sValue,TimedOut = True)
-                Devices[6].Update(nValue = Devices[6].nValue,sValue = Devices[6].sValue,TimedOut = True)
+            if self.temptimeout <= now:
+                noerror = False
+                if not self.intemperror:
+                     self.intemperror = True
+                     Domoticz.Error("No Inside Temperature found: Switching request heating Off")
+                     self.switchHeat = False
+                     # we mark both the thermostat switch and the thermostat temp devices as timedout
+                     Devices[1].Update(nValue = Devices[1].nValue,sValue = Devices[1].sValue,TimedOut = True)
+                     Devices[6].Update(nValue = Devices[6].nValue,sValue = Devices[6].sValue,TimedOut = True)
 
         # calculate the average TRV temperature
         nbtemps = len(listtrvtemps)
