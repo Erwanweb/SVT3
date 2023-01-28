@@ -460,7 +460,7 @@ class BasePlugin:
     def readTemps(self):
 
         # set update flag for next temp update
-        self.nexttemps = datetime.now() + timedelta(minutes=5)
+        self.nexttemps = datetime.now() + timedelta(minutes=2)
         now = datetime.now()
 
         # fetch all the devices from the API and scan for sensors
