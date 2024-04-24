@@ -384,7 +384,7 @@ class BasePlugin:
 
             # Build list of DT switches, with their current status
             PresenceDT = {}
-            devicesAPI = DomoticzAPI("type=devices&filter=light&used=true&order=Name")
+            devicesAPI = DomoticzAPI("type=command&param=getdevices&filter=light&used=true&order=Name")
             if devicesAPI:
                 for device in devicesAPI["result"]:  # parse the presence/motion sensors (DT) device
                     idx = int(device["idx"])
@@ -467,7 +467,7 @@ class BasePlugin:
         noerror = True
         listintemps = []
         listtrvtemps = []
-        devicesAPI = DomoticzAPI("type=devices&filter=temp&used=true&order=Name")
+        devicesAPI = DomoticzAPI("type=command&param=getdevices&filter=temp&used=true&order=Name")
         if devicesAPI:
             for device in devicesAPI["result"]:  # parse the devices for temperature sensors
                 idx = int(device["idx"])
